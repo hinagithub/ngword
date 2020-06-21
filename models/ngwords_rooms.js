@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Ngwords_rooms = sequelize.define('Ngwords_rooms', {
+  const ngwords_rooms = sequelize.define('ngwords_rooms', {
     room_id: DataTypes.INTEGER,
     ngword_id: DataTypes.INTEGER
   }, {});
-  Ngwords_rooms.associate = function(models) {
+  ngwords_rooms.associate = function(models) {
     // associations can be defined here
   };
-  return Ngwords_rooms;
+  return ngwords_rooms;
 };
