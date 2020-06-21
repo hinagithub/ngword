@@ -1,12 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const ngwords = sequelize.define('ngwords', {
+  const Ngwords = sequelize.define('Ngwords', {
     name: DataTypes.STRING
-  }, {
-    underscored: true,
-  });
-  ngwords.associate = function(models) {
+  }, {});
+  Ngwords.associate = function(models) {
     // associations can be defined here
   };
-  return ngwords;
+  return Ngwords;
 };
