@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('players', {
+    return queryInterface.createTable('Players', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,6 +10,7 @@ module.exports = {
       },
       room_id: {
         type: Sequelize.INTEGER,
+        references: { model: 'rooms', key: 'id' }, // 外部キー
       },
       name: {
         type: Sequelize.STRING,
@@ -25,6 +26,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('players');
+    return queryInterface.dropTable('Players');
   },
 };
