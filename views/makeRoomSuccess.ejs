@@ -1,0 +1,26 @@
+<%- include('./header')%>
+<p>部屋を作りました。各プレイヤーにURLを伝えてゲームを始めてください。</p>
+<ul>
+  <ol>
+    <%= roomName != undefined ? '部屋名： ' + roomName : 'not found' %>
+  </ol>
+  <ol>
+    <input
+      type="text"
+      id="copyTarget"
+      value="http://localhost:3000/enterRoom/?roomName=<%=roomName%>"
+    />
+    <a href="javascript:copyToClipboard()"><i class="fas fa-copy"></i></a>
+  </ol>
+</ul>
+<script>
+  function copyToClipboard() {
+    // コピー対象をJavaScript上で変数として定義する
+    const copyTarget = document.getElementById('copyTarget');
+    // 対象テキストを洗濯
+    copyTarget.select();
+    // リップボードにコピー
+    document.execCommand('Copy');
+  }
+</script>
+<%- include('./footer')%>

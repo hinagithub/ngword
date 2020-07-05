@@ -1,11 +1,76 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<%- include('./header')%>
+  <div class = "title"></div>
+  <p>オン飲みで盛り上がる会話型ゲーム</p>
+
+  <form method="post" action="/register">
+      <input type="text" id="name" name="name" placeholder="your name" />
+      <input type="text" id="tel" name="tel" placeholder="phone number" />
+      <input type="submit" value="send" />
+  </form>
+    <div>
+      <a id="howToPlayLink" onclick="dispHowToPlay()">遊び方</a>
+    </div>
+    <div>
+      <a href="/makeRoom">部屋を作る</a>
+    </div>
+  <div id="howToPlay-show">
+    <section>
+      <h2>概要</h2>
+        <p>これからあなた方は、「言ってはいけないゲームの部屋」に入ります。</p>
+        <p>この部屋では、プレイヤーそれぞれに「言ってはいけない言葉(禁止ワード)」が割り当てられます。</p>
+        <p>あなたは自分の禁止ワードが何か知りません。</p>
+        <p>しかし、他のプレイヤーの禁止ワードは知っています。</p>
+        <p>その状態で、プレイヤー同士で会話をしていただきます。</p>
+
+        <p>もし、会話の中で自分の禁止ワードを言ってしまった場合はゲームから脱落し、</p>
+        <p>どこからともなく現れる黒ずくめの処刑人にお尻を叩かれてしまいます。</p>
+        <p>この部屋から無事に出られるのは、最後まで禁止ワードを言わなかった1名、つまり勝者だけです。</p>
+
+        <p>さらに、この部屋から出る方法はもう一つあります。</p>
+        <p>自分の禁止ワードが何かを当てることです。</p>
+
+        <p>他のプレイヤーに禁句を言わせるように会話を上手く誘導しましょう。</p>
+        <p>また、プレイヤーが自分に何を言わせようとしているのか、注意を払って推測しましょう。</p>
+
+        <p>無事に部屋から出られることを祈っています。</p>
+      </section>
+    <section>
+    <h2>プレイヤー数</h2>
+      <p>2〜8名</p>
+    </section>
+    <section>
+      <h2>所要時間</h2>
+      <p>10分</p>
+      </p>*無制限にもできますが、勝負がつかないことがあるので制限時間を決めることをオススメします。<p>
+    <section></section>
+
+    <section>
+      <h2>勝利条件</h2>
+      <p>・自分以外のプレイヤーが全員禁止ワードを言う</p>
+      <p>・自分の禁止ワードが何かを当てる</p>
+    </section>
+
+    <section>
+      <h2>敗北条件</h2>
+      <p>・自分の禁止ワードを言う</p>
+      <p>・制限時間内に自分の禁止ワードが何かを当てられない</p>
+      <p>・相手に禁止ワードが何かを当てられる</p>
+    </section>
+  </div>
+
+  <script>
+    // 「遊び方」の表示切り替え関数
+    document.getElementById("howToPlay-show").style.display ="none";
+    function dispHowToPlay(){
+      const showArea = document.getElementById("howToPlay-show");
+      if(showArea.style.display=="block"){
+        // noneで非表示(デフォルトはこれ)
+        showArea.style.display ="none";
+      }else{
+        // blockで表示
+        showArea.style.display ="block";
+      }
+    }
+</script>
+</body>
 </html>
