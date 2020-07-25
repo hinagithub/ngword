@@ -1,113 +1,131 @@
-<%- include('./header')%>
-<div class = "title"></div>
-  <form method="post" action="/makeRoom">
-    <p>プレイヤー名(2〜8名)を入力してください。</p>
-    <p class="errorMessage"></p>
-    <div>
-      <a　href="/">Topへ戻る</a>
+<html>
+  <%- include('./common/header')%>
+  <body>
+    <div class="container-fluid">
+    <%- include('./common/title')%>
+    <div class="mt-5">
+      <p>プレイヤー名(2〜8名)を入力してください。</p>
+      <p class="errorMessage" />
     </div>
-    <div class="container">
-      <table id="player-table">
-        <tbody>
-          <tr>
-            <td>
-              <input type="text" name="player">
-            </td>
-            <td>
-              <button onclick="deleteRow(this)">-</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input type="text" name="player">
-            </td>
-            <td>
-              <button onclick="deleteRow(this)">-</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <a href="javascript:addRow()">追加</a>
-      <input type="hidden" name="playerCount" id="playerCount">
-      <input type="submit" value="送信" onclick="return check()">
-  </form>
-  <script>
-    function addRow() {
-      let table = document.getElementById('player-table')
-      let newTr = table.insertRow(-1);
-      // tdを生成しinput要素を追加
-      let newTd = newTr.insertCell(-1);
-      let newInputElement = document.createElement("input");
-      newInputElement.setAttribute("type", "text");
-      newInputElement.setAttribute("name", "player");
-      newTd.appendChild(newInputElement);
-      // tdを生成しbutton要素を追加
-      let newTd2 = newTr.insertCell();
-      let newButtonElement = document.createElement("button");
-      newButtonElement.setAttribute("onclick", "deleteRow(this)");
-      var deleteText = document.createTextNode('-')
-      newButtonElement.appendChild(deleteText);
-      newTd2.appendChild(newButtonElement);
-      // メモ: innerHTMLで書き込む方がシンプルでよかったかも
-      //   function coladd() {
-      //   var table = document.getElementById("table");
-      //   // 行を行末に追加
-      //   var row = table.insertRow(-1);
-      //   //td分追加
-      //   var cell1 = row.insertCell(-1);
-      //   var cell2 = row.insertCell(-1);
-      //   // セルの内容入力
-      //   cell1.innerHTML = '行を追加しました';
-      //   cell2.innerHTML = 'この行を削除しますか？<input type="button" value=削除" id="coladd" onclick="coldel(this)">';
-      // }
-    }
-    function deleteRow(obj) {
-      // 削除ボタンを押下された行を取得
-      tr = obj.parentNode.parentNode;
-      // trのインデックスを取得して行を削除する
-      tr.parentNode.deleteRow(tr.sectionRowIndex);
-    }
-    function check() {
-      const table = document.getElementById('player-table')
-      var counter = 0
-      let checkArray = []
-      let errElement = document.querySelector(".errorMessage");
-      let isDuplicate = (value) => {
-        for (i = 0; i < checkArray.length; i++) {
-          if ((checkArray[0] != undefined) && (value == checkArray[i])) {
-            return true
+    <form method="post" action="/makeRoom">
+      <div class="row">
+        <div class="col-md-5">
+          <table id="player-table" class="table borderless">
+            <tbody>
+              <tr>
+                <td class="pl-0">
+                  <input type="text" name="player" class="form-control">
+                </td>
+                <td>
+                  <button onclick="deleteRow(this)" class="btn btn-outline-danger btn-sm">−</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="pl-0">
+                  <input type="text" name="player" class="form-control">
+                </td>
+                <td>
+                  <button onclick="deleteRow(this)" class="btn btn-outline-danger btn-sm">−</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col">
+          <a href="javascript:addRow()" class="btn btn-outline-info btn-sm" role="button" style="text-decoration: none;">＋</a>
+          <input type="hidden" name="playerCount" id="playerCount">
+        </div>
+      </div>
+      <div class="row mt-5 mb-2">
+        <div class="col">
+          <input type="submit" value="完 了" onclick="return check()" class="btn btn-theme" role="button" style="color:black;" />
+        </div>
+      </div>
+    </form>
+    <script>
+      function addRow() {
+        let table = document.getElementById('player-table')
+        let newTr = table.insertRow(-1);
+        // tdを生成しinput要素を追加
+        let newTd = newTr.insertCell(-1);
+        newTd.setAttribute("class", "pl-0");
+        let newInputElement = document.createElement("input");
+        newInputElement.setAttribute("type", "text");
+        newInputElement.setAttribute("name", "player");
+        newInputElement.setAttribute("class", "form-control");
+        newTd.appendChild(newInputElement);
+        // tdを生成しbutton要素を追加
+        let newTd2 = newTr.insertCell();
+        let newButtonElement = document.createElement("button");
+        newButtonElement.setAttribute("onclick", "deleteRow(this)");
+        newButtonElement.setAttribute("class", "btn btn-outline-danger btn-sm");
+        var deleteText = document.createTextNode('−')
+        newButtonElement.appendChild(deleteText);
+        newTd2.appendChild(newButtonElement);
+        // メモ: innerHTMLで書き込む方がシンプルでよかったかも
+        //   function coladd() {
+        //   var table = document.getElementById("table");
+        //   // 行を行末に追加
+        //   var row = table.insertRow(-1);
+        //   //td分追加
+        //   var cell1 = row.insertCell(-1);
+        //   var cell2 = row.insertCell(-1);
+        //   // セルの内容入力
+        //   cell1.innerHTML = '行を追加しました';
+        //   cell2.innerHTML = 'この行を削除しますか？<input type="button" value=削除" id="coladd" onclick="coldel(this)">';
+        // }
+      }
+      function deleteRow(obj) {
+        // 削除ボタンを押下された行を取得
+        tr = obj.parentNode.parentNode;
+        // trのインデックスを取得して行を削除する
+        tr.parentNode.deleteRow(tr.sectionRowIndex);
+      }
+      function check() {
+        const table = document.getElementById('player-table')
+        var counter = 0
+        let checkArray = []
+        let errElement = document.querySelector(".errorMessage");
+        let isDuplicate = (value) => {
+          for (i = 0; i < checkArray.length; i++) {
+            if ((checkArray[0] != undefined) && (value == checkArray[i])) {
+              return true
+            }
+          }
+          checkArray.push(value)
+          return false
+        }
+        for (let row of table.rows) {
+          let value = row.cells[0].getElementsByTagName("input")[0].value
+          if (value != '') {
+            //重複チェック
+            if (isDuplicate(value)) {
+              errElement.innerHTML = 'プレイヤー名が重複しています'
+              return false
+            }
+            //文字数チェック
+            if (value.length > 30) {
+              errElement.innerHTML = 'プレイヤー名は30文字以下にしてください'
+              return false
+            }
+            counter++
           }
         }
-        checkArray.push(value)
-        return false
-      }
-      for (let row of table.rows) {
-        let value = row.cells[0].getElementsByTagName("input")[0].value
-        if (value != '') {
-          //重複チェック
-          if (isDuplicate(value)) {
-            errElement.innerHTML = 'プレイヤー名が重複しています'
-            return false
-          }
-          //文字数チェック
-          if (value.length > 30) {
-            errElement.innerHTML = 'プレイヤー名は30文字以下にしてください'
-            return false
-          }
-          counter++
+        //プレイヤー数チェック
+        if (counter < 2 || counter > 8) {
+          errElement = document.querySelector(".errorMessage");
+          errElement.innerHTML = 'プレイヤー数は2〜8名です'
+          return false
         }
+        const playerCount = document.getElementById('playerCount')
+        playerCount.setAttribute("value", counter);
+        // TODO:空白を１つにまとめて文字数制限チェック
+        // TODO:空白を１つにまとめて空白のみチェック  
+        return true
       }
-      //プレイヤー数チェック
-      if (counter < 2 || counter > 8) {
-        errElement = document.querySelector(".errorMessage");
-        errElement.innerHTML = 'プレイヤー数は2〜8名です'
-        return false
-      }
-      const playerCount = document.getElementById('playerCount')
-      playerCount.setAttribute("value", counter);
-      // TODO:空白を１つにまとめて文字数制限チェック
-      // TODO:空白を１つにまとめて空白のみチェック  
-      return true
-    }
-  </script>
-<%- include('./footer')%>
+    </script>
+  </body>
+  <%- include('./common/footer')%>
+</html>

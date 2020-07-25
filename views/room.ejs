@@ -1,112 +1,202 @@
-<%- include('./header')%>
-<div class="title"></div>
-<p></p>
-<p>ゲームが始まりました!</p>
-<p>
-  自分の禁句を言わないよう気をつけつつ、相手に禁句を言わせるよう会話を誘導しましょう
-</p>
-<article>
-  <div>
-    <%= roomName != undefined ? '部屋名: ' + roomName : 'not found' %>
-  </div>
-  <div>
-    <%= selectedPlayerName != undefined ? 'あなたの名前: ' + selectedPlayerName
-    :'not found' %>
-  </div>
-</article>
-<br />
-<table>
-  <tr>
-    <th>
-      プレイヤー名&nbsp;
-    </th>
-    <th>
-      NGワード・行為
-    </th>
-  </tr>
-  <% if(playerNames[0] != '' && playerNames[0] != selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[0] %>
-    </td>
-    <td>
-      <%= ngwords[0] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[1] != '' && playerNames[1] != selectedPlayerName){
-  %>
-  <tr>
-    <td>
-      <%= playerNames[1] %>
-    </td>
-    <td>
-      <%= ngwords[1] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[2] != undefined && playerNames[2] !=
-  selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[2] %>
-    </td>
-    <td>
-      <%= ngwords[2] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[3] != undefined && playerNames[3] !=
-  selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[3] %>
-    </td>
-    <td>
-      <%= ngwords[3] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[4] != undefined && playerNames[4] !=
-  selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[4] %>
-    </td>
-    <td>
-      <%= ngwords[4] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[5]!= undefined && playerNames[5] !=
-  selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[5] %>
-    </td>
-    <td>
-      <%= ngwords[5] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[6] != undefined && playerNames[6] !=
-  selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[6] %>
-    </td>
-    <td>
-      <%= ngwords[6] %>
-    </td>
-  </tr>
-  <% } %> <% if(playerNames[7] != undefined && playerNames[7] !=
-  selectedPlayerName){ %>
-  <tr>
-    <td>
-      <%= playerNames[7] %>
-    </td>
-    <td>
-      <%= ngwords[7] %>
-    </td>
-  </tr>
-  <% } %>
-</table>
-<br />
-<div>
-  <a href="/enterRoom?roomName=<%= roomName %>">前の画面へ戻る</a>
-</div>
-<%- include('./footer')%>
+<html>
+  <%- include('./common/header')%>
+  <body>
+    <div class="container-fluid">
+    <%- include('./common/title')%>
+    <div class="mt-5">
+      <p>ゲームが始まりました!</p>
+      <p>
+        自分の禁句を言わないよう気をつけつつ、相手に禁句を言わせるよう会話を誘導しましょう
+      </p>
+    </div>
+    <article>
+      <div>
+        <%= roomName != undefined ? '部屋名: ' + roomName : 'not found' %>
+      </div>
+      <div>
+        <%= selectedPlayerName != undefined ? 'あなたの名前: ' +
+        selectedPlayerName :'not found' %>
+      </div>
+    </article>
+    <br />
+ 
+
+    <table>
+      <tr>
+        <th>
+          プレイヤー名&nbsp;
+        </th>
+        <th>
+          NGワード・行為
+        </th>
+      </tr>
+      <% if(playerNames[0] != '' && playerNames[0] != selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[0] %>
+        </td>
+        <td>
+          <%= ngwords[0] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[1] != '' && playerNames[1] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[1] %>
+        </td>
+        <td>
+          <%= ngwords[1] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[2] != undefined && playerNames[2] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[2] %>
+        </td>
+        <td>
+          <%= ngwords[2] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[3] != undefined && playerNames[3] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[3] %>
+        </td>
+        <td>
+          <%= ngwords[3] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[4] != undefined && playerNames[4] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[4] %>
+        </td>
+        <td>
+          <%= ngwords[4] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[5]!= undefined && playerNames[5] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[5] %>
+        </td>
+        <td>
+          <%= ngwords[5] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[6] != undefined && playerNames[6] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[6] %>
+        </td>
+        <td>
+          <%= ngwords[6] %>
+        </td>
+      </tr>
+      <% } %> <% if(playerNames[7] != undefined && playerNames[7] !=
+      selectedPlayerName){ %>
+      <tr>
+        <td>
+          <%= playerNames[7] %>
+        </td>
+        <td>
+          <%= ngwords[7] %>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+      <div class="row">
+        <% if(playerNames[0] != undefined && playerNames[0] !=selectedPlayerName){ %>
+          <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <p class="card-text"><%= playerNames[0] %></p>
+                <h5 class="card-title"><%= ngwords[0] %></h5>
+              </div>
+            </div>
+          </div>
+          <% } %>
+      <% if(playerNames[1] != undefined && playerNames[1] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[1] %></p>
+            <h5 class="card-title"><%= ngwords[1] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    <% if(playerNames[2] != undefined && playerNames[2] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[2] %></p>
+            <h5 class="card-title"><%= ngwords[2] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    <% if(playerNames[3] != undefined && playerNames[3] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[3] %></p>
+            <h5 class="card-title"><%= ngwords[3] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% if(playerNames[4] != undefined && playerNames[4] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[4] %></p>
+            <h5 class="card-title"><%= ngwords[4] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% if(playerNames[5] != undefined && playerNames[5] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[5] %></p>
+            <h5 class="card-title"><%= ngwords[5] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% if(playerNames[6] != undefined && playerNames[6] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[6] %></p>
+            <h5 class="card-title"><%= ngwords[6] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% if(playerNames[7] != undefined && playerNames[7] !=selectedPlayerName){ %>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <p class="card-text"><%= playerNames[7] %></p>
+            <h5 class="card-title"><%= ngwords[7] %></h5>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <br />
+    <div>
+      <a href="/enterRoom?roomName=<%= roomName %>">前の画面へ戻る</a>
+    </div>
+    <%- include('./common/footer')%>
+  </body>
+</html>
