@@ -1,104 +1,107 @@
-<%- include('./header')%>
-  <div>
-    <p>
-      <%= roomName != undefined ? '部屋名:' + roomName : errorMessage %>
-    </p>
-  </div>
-  <div>
-    <% if(errMessage === undefined){ %>
-      <p>プレイヤー(あなた)を選択してください。</p>
-      <form method="post" action="/enterRoom" name=enterRoomForm>
-      <p class="errorMessage"></p>
-      <p>
-        <div>
-          <label>
-            <input type="radio" name="selectedPlayerName" value="<%= playerNames[0]%>">
-            <%= playerNames[0] %>
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" name="selectedPlayerName" value="<%= playerNames[1]%>">
-            <%= playerNames[1] %>
-          </label>
-        </div>
-        <% if(playerNames[2] != undefined){ %>
+<html>
+  <%- include('./common/header')%>
+  <body>
+    <div class="container-fluid">
+    <%- include('./common/title')%>
+    <div class="mt-5">
+    </div>
+    <div>
+      <% if(errMessage === undefined){ %>
+        <p>プレイヤー(あなた)を選択してください。</p>
+        <form method="post" action="/enterRoom" name=enterRoomForm>
+        <p class="errorMessage"></p>
+        <p>
           <div>
             <label>
-              <input type="radio" name="selectedPlayerName" value="<%= playerNames[2]%>">
-              <%= playerNames[2] %>
+              <input type="radio" name="selectedPlayerName" value="<%= playerNames[0]%>">
+              <%= playerNames[0] %>
             </label>
           </div>
-        <% } %>
-        <% if(playerNames[3] != undefined){ %>
           <div>
             <label>
-              <input type="radio" name="selectedPlayerName" value="<%= playerNames[3]%>">
-              <%= playerNames[3] %>
+              <input type="radio" name="selectedPlayerName" value="<%= playerNames[1]%>">
+              <%= playerNames[1] %>
             </label>
           </div>
-        <% } %>
-        <% if(playerNames[4] != undefined){ %>
-          <div>
-            <label>
-              <input type="radio" name="selectedPlayerName" value="<%= playerNames[4]%>">
-              <%= playerNames[4] %>
-            </label>
-          </div>
-        <% } %>
-        <% if(playerNames[5] != undefined){ %>
-          <div>
-            <label>
-              <input type="radio" name="selectedPlayerName" value="<%= playerNames[5]%>">
-              <%= playerNames[5] %>
-            </label>
-          </div>
-        <% } %>
-        <% if(playerNames[6] != undefined){ %>
-          <div>
-            <label>
-              <input type="radio" name="selectedPlayerName" value="<%= playerNames[6]%>">
-              <%= playerNames[6] %>
-            </label>
-          </div>
-        <% } %>
-        <% if(playerNames[7] != undefined){ %>
-          <div>
-            <label>
-              <input type="radio" name="selectedPlayerName" value="<%= playerNames[7]%>">
-              <%= playerNames[7] %>
-            </label>
-          </div>
-        <% } %>
-      </p>
-    <input type="hidden" id="roomId" name="roomId" value="<%= roomId %>">
-    <input type="submit" value="ゲーム開始" onclick="return check()">
-  </form>
-  <div>
-    <a href="/enterRoom/shuffleNgwords?roomId=<%= roomId %>" onclick="return shuffleConfirm()">NGワードをシャッフルする</a>
-  </div>
-  <% } %>
-  </div>
-  <script>
+          <% if(playerNames[2] != undefined){ %>
+            <div>
+              <label>
+                <input type="radio" name="selectedPlayerName" value="<%= playerNames[2]%>">
+                <%= playerNames[2] %>
+              </label>
+            </div>
+          <% } %>
+          <% if(playerNames[3] != undefined){ %>
+            <div>
+              <label>
+                <input type="radio" name="selectedPlayerName" value="<%= playerNames[3]%>">
+                <%= playerNames[3] %>
+              </label>
+            </div>
+          <% } %>
+          <% if(playerNames[4] != undefined){ %>
+            <div>
+              <label>
+                <input type="radio" name="selectedPlayerName" value="<%= playerNames[4]%>">
+                <%= playerNames[4] %>
+              </label>
+            </div>
+          <% } %>
+          <% if(playerNames[5] != undefined){ %>
+            <div>
+              <label>
+                <input type="radio" name="selectedPlayerName" value="<%= playerNames[5]%>">
+                <%= playerNames[5] %>
+              </label>
+            </div>
+          <% } %>
+          <% if(playerNames[6] != undefined){ %>
+            <div>
+              <label>
+                <input type="radio" name="selectedPlayerName" value="<%= playerNames[6]%>">
+                <%= playerNames[6] %>
+              </label>
+            </div>
+          <% } %>
+          <% if(playerNames[7] != undefined){ %>
+            <div>
+              <label>
+                <input type="radio" name="selectedPlayerName" value="<%= playerNames[7]%>">
+                <%= playerNames[7] %>
+              </label>
+            </div>
+          <% } %>
+        </p>
+      <input type="hidden" id="roomId" name="roomId" value="<%= roomId %>">
+      <input type="submit" value="ゲーム開始" onclick="return check()" class="btn btn-theme" role="button" style="color:black;">
+    </form>
+    <div>
+      <a href="/enterRoom/shuffleNgwords?roomId=<%= roomId %>" onclick="return shuffleConfirm()">NGワードをシャッフルする</a>
+    </div>
+    <% } %>
+    </div>
+    <script>
 
-    // プレイヤー選択有無チェック
-    function check() {
-      for (let i = 0; i < document.enterRoomForm.player.length; i++) {
-        if (document.enterRoomForm.player[i].checked) {
+      // プレイヤー選択有無チェック
+      function check() {
+        for (let i = 0; i < document.enterRoomForm.player.length; i++) {
+          if (document.enterRoomForm.player[i].checked) {
+            return true
+          }
+        }
+        errElement = document.querySelector(".errorMessage");
+        errElement.innerHTML = 'プレイヤーを選択してください'
+        return false
+      }
+
+      //NGワードシャッフル実行前の警告メッセージ
+      function shuffleConfirm() {
+        if (window.confirm('プレイヤー全員のNGワードが再設定されます。よろしいですか？')) {
           return true
         }
+        return false
       }
-      errElement = document.querySelector(".errorMessage");
-      errElement.innerHTML = 'プレイヤーを選択してください'
-      return false
-    }
-
-    //NGワードシャッフル実行前の警告メッセージ
-    function shuffleConfirm() {
-      if (window.confirm('プレイヤー全員のNGワードが再設定されます。よろしいですか？')) {
-        return true
-      }
-      return false
-    }
-  </script>
-<%- include('./footer')%>
+    </script>
+  <%- include('./common/footer')%>
+  </body>
+</html>

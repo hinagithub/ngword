@@ -4,35 +4,32 @@ body {
   padding: 50px;
   font-family: 'Kosugi Maru', sans-serif;
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: rgb(221, 221, 221);
-  background: url(../images/background_mouthOnly.jpg) center no-repeat;
+  background: url(../images/bk3.jpg) center no-repeat;
   background-attachment: fixed;
   background-size: cover;
   margin: 0;
 }
-
+html {
+  font-size: 16px;
+}
 a {
   color: #ff495b;
   text-decoration: underline;
   cursor: pointer;
 }
-
 p {
   line-height: 1.5;
 }
-
 ul {
   padding: 0;
 }
-
 li {
   padding: 0;
 }
-
 .title {
   width: 700px;
   height: 100px;
-  background: url(../images/logo.png) left no-repeat;
+  background: url(../images/title.png) left no-repeat;
   background-size: cover;
 }
 
@@ -50,4 +47,28 @@ li {
     width: 285px;
     height: 40px;
   }
+}
+
+.borderless td,
+.borderless th {
+  border: none;
+}
+.btn-theme {
+  background-color: #ff495b;
+  color: white;
+  text-decoration: none;
+}
+
+/* 部屋を作るボタン */
+.create-btn {
+  width: 15rem;
+  background-color: transparent;
+  border: 2px solid #030303;
+  color: #030303;
+  line-height: 40px;
+}
+.create-btn:hover {
+  background-color: #ff495b;
+  letter-spacing: 5px;
+  color: #030303;
 }
