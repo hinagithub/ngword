@@ -1,8 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP&display=swap');
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 35px;
+  font-family: 'Kosugi Maru', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
+  background: url(../images/bk3.jpg) center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+}
+html {
+  font-size: 16px;
+}
+a {
+  color: #ff495b;
+  text-decoration: underline;
+  cursor: pointer;
+}
+p {
+  line-height: 1.5;
+}
+ul {
+  padding: 0;
+}
+li {
+  padding: 0;
+}
+.title {
+  width: 700px;
+  height: 100px;
+  background: url(../images/title.png) left no-repeat;
+  background-size: cover;
 }
 
-a {
-  color: #00B7FF;
+/* iPad サイズ */
+@media only screen and (max-width: 768px) {
+  .title {
+    width: 270px;
+    height: 40px;
+  }
+}
+
+/* iPhone X サイズ */
+@media only screen and (max-width: 400px) {
+  .title {
+    width: 285px;
+    height: 40px;
+  }
+}
+
+.borderless td,
+.borderless th {
+  border: none;
+}
+
+/* テーマ色のボタン */
+.btn-theme {
+  background-color: #ff495b;
+  color: #030303;
+  text-decoration: none;
+}
+
+/* テーマ色の文字 */
+.text-theme {
+  color: #ff495b;
+}
+
+/* 部屋を作るボタン */
+.create-btn {
+  width: 15rem;
+  background-color: transparent;
+  border: 2px solid #030303;
+  color: #030303;
+  line-height: 40px;
+}
+.create-btn:hover {
+  background-color: #ff495b;
+  letter-spacing: 5px;
+  color: #030303;
 }
