@@ -5,115 +5,18 @@
     <%- include('./common/title')%>
     <div class="mt-5">
       <p>ゲームが始まりました!</p>
-      <p>
-        自分の禁句を言わないよう気をつけつつ、相手に禁句を言わせるよう会話を誘導しましょう
-      </p>
+      <p>自分の禁句をさぐりつつ、相手に禁句を言わせるよう会話を誘導しましょう</p>
     </div>
     <article>
-      <div>
-        <%= roomName != undefined ? '部屋名: ' + roomName : 'not found' %>
-      </div>
       <div>
         <%= selectedPlayerName != undefined ? 'あなたの名前: ' +
         selectedPlayerName :'not found' %>
       </div>
     </article>
     <br />
- 
-
-    <table>
-      <tr>
-        <th>
-          プレイヤー名&nbsp;
-        </th>
-        <th>
-          NGワード・行為
-        </th>
-      </tr>
-      <% if(playerNames[0] != '' && playerNames[0] != selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[0] %>
-        </td>
-        <td>
-          <%= ngwords[0] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[1] != '' && playerNames[1] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[1] %>
-        </td>
-        <td>
-          <%= ngwords[1] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[2] != undefined && playerNames[2] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[2] %>
-        </td>
-        <td>
-          <%= ngwords[2] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[3] != undefined && playerNames[3] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[3] %>
-        </td>
-        <td>
-          <%= ngwords[3] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[4] != undefined && playerNames[4] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[4] %>
-        </td>
-        <td>
-          <%= ngwords[4] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[5]!= undefined && playerNames[5] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[5] %>
-        </td>
-        <td>
-          <%= ngwords[5] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[6] != undefined && playerNames[6] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[6] %>
-        </td>
-        <td>
-          <%= ngwords[6] %>
-        </td>
-      </tr>
-      <% } %> <% if(playerNames[7] != undefined && playerNames[7] !=
-      selectedPlayerName){ %>
-      <tr>
-        <td>
-          <%= playerNames[7] %>
-        </td>
-        <td>
-          <%= ngwords[7] %>
-        </td>
-      </tr>
-      <% } %>
-    </table>
-      <div class="row">
+      <div class="row justify-content-start align-items-start">
         <% if(playerNames[0] != undefined && playerNames[0] !=selectedPlayerName){ %>
-          <div class="col-md-4">
+          <div class="col-auto p-2">
             <div class="card" style="width: 18rem;">
               <div class="card-body">
                 <p class="card-text"><%= playerNames[0] %></p>
@@ -122,18 +25,18 @@
             </div>
           </div>
           <% } %>
-      <% if(playerNames[1] != undefined && playerNames[1] !=selectedPlayerName){ %>
-      <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <p class="card-text"><%= playerNames[1] %></p>
-            <h5 class="card-title"><%= ngwords[1] %></h5>
+        <% if(playerNames[1] != undefined && playerNames[1] !=selectedPlayerName){ %>
+          <div class="col-auto p-2">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <p class="card-text"><%= playerNames[1] %></p>
+              <h5 class="card-title"><%= ngwords[1] %></h5>
+            </div>
           </div>
         </div>
-      </div>
       <% } %>
-    <% if(playerNames[2] != undefined && playerNames[2] !=selectedPlayerName){ %>
-      <div class="col-md-4">
+      <% if(playerNames[2] != undefined && playerNames[2] !=selectedPlayerName){ %>
+        <div class="col-auto p-2">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"><%= playerNames[2] %></p>
@@ -143,7 +46,7 @@
       </div>
       <% } %>
     <% if(playerNames[3] != undefined && playerNames[3] !=selectedPlayerName){ %>
-      <div class="col-md-4">
+      <div class="col-auto p-2">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"><%= playerNames[3] %></p>
@@ -153,7 +56,7 @@
       </div>
       <% } %>
       <% if(playerNames[4] != undefined && playerNames[4] !=selectedPlayerName){ %>
-      <div class="col-md-4">
+      <div class="col-auto p-2">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"><%= playerNames[4] %></p>
@@ -163,7 +66,7 @@
       </div>
       <% } %>
       <% if(playerNames[5] != undefined && playerNames[5] !=selectedPlayerName){ %>
-      <div class="col-md-4">
+      <div class="col-auto p-2">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"><%= playerNames[5] %></p>
@@ -173,7 +76,7 @@
       </div>
       <% } %>
       <% if(playerNames[6] != undefined && playerNames[6] !=selectedPlayerName){ %>
-      <div class="col-md-4">
+      <div class="col-auto p-2">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"><%= playerNames[6] %></p>
@@ -183,7 +86,7 @@
       </div>
       <% } %>
       <% if(playerNames[7] != undefined && playerNames[7] !=selectedPlayerName){ %>
-      <div class="col-md-4">
+      <div class="col-auto p-2">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <p class="card-text"><%= playerNames[7] %></p>
@@ -194,6 +97,67 @@
       <% } %>
     </div>
     <br />
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-theme mb-5" data-toggle="modal" data-target="#exampleModalLong">
+      遊び方
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">遊び方</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <h2>概要</h2>
+              <p>「<span class="text-theme">絶対に言ってはいけないゲームの部屋</span>」へようこそ。</p>
+              <p>私はあなたを含むプレイヤーそれぞれに「言ってはいけない言葉(禁止ワード)」を割り当てました。</p>
+              <p>自分の禁止ワードを言わないように気をつけながら、プレイヤー同士で会話をしてください。</p>
+              <br />
+              <p>自分の禁止ワードを言ってしまった場合はゲームオーバーです。</p>
+              <p>どこからともなく現れる黒ずくめの処刑人にお尻を叩かれてしまうでしょう。</p>
+              <p>この部屋から無事に出られるのは、最後まで禁止ワードを言わなかった1名、つまり勝者だけです。</p>
+              <br />
+              <p>ただし、この部屋から出る方法はもう一つあります。</p>
+              <p>自分の禁止ワードが何かを当てることです。</p>
+              <p>プレイヤーが自分に何を言わせようとしているのか、注意を払って推測しましょう。</p>
+              <br/>
+              <p>無事に部屋から出られることを祈っています。</p>
+            </div>
+
+            <div class="mt-5">
+              <h2>所要時間</h2>
+              <p>10分</p>
+              </p>*無制限にもできますが、勝負がつかないことがあるので制限時間を決めることをオススメします。<p>
+            </div>
+
+            <div class="mt-5">
+              <h2>勝利条件</h2>
+              <p>・自分以外のプレイヤーが全員禁止ワードを言う</p>
+              <p>・自分の禁止ワードが何かを当てる</p>
+            </div>
+
+            <div class="mt-5">
+              <h2>敗北条件</h2>
+              <p>・自分の禁止ワードを言う</p>
+              <p>・制限時間内に自分の禁止ワードが何かを当てられない</p>
+              <p>・相手に禁止ワードが何かを当てられる</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+      </div>
+    </div>
     <div>
       <a href="/enterRoom?roomName=<%= roomName %>">前の画面へ戻る</a>
     </div>

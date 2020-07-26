@@ -99,6 +99,14 @@
         }
         for (let row of table.rows) {
           let value = row.cells[0].getElementsByTagName("input")[0].value
+
+          // 記号チェック
+          const reg = new RegExp(/[!"#$%&'()\*\+\.,\/:;<=>?\[\\\]`{|}~ 　]/g);
+            if(reg.test(value)) {
+              errElement.innerHTML = "「-」、「_」、「^」、「@」以外の記号やスペースは使えません"
+              return false
+            }
+            console.log(value)
           if (value != '') {
             //重複チェック
             if (isDuplicate(value)) {
