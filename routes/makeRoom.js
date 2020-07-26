@@ -7,12 +7,19 @@ const Player = require('../models').players;
 const Ngword = require('../models').ngwords;
 const NgwordRoom = require('../models').ngwords_rooms;
 
-/* GET makeRoom. */
-router.get('/', function (req, res, next) {
+/**
+ *
+ * GET makeRoom
+ *
+ */ router.get('/', function (req, res, next) {
   res.render('makeRoom', { title: 'Express' });
 });
 
-/* POST makeRoom*/
+/**
+ *
+ * POST makeRoom
+ *
+ */
 router.post('/', async function (req, res, next) {
   // トランザクション開始
   const t = await sequelize.transaction();
@@ -22,10 +29,12 @@ router.post('/', async function (req, res, next) {
     const room = await Room.create({ name: roomName }, { transaction: t });
     // プレイヤー名を取得し登録
     const playerRegisterInfo = req.body.player.map((player) => {
-      return {
-        room_id: room.id,
-        name: player,
-      };
+      console.log(player);
+      if (player !== '')
+        return {
+          room_id: room.id,
+          name: player,
+        };
     });
     await Player.bulkCreate(playerRegisterInfo, { transaction: t });
     // 全NGワードを取得
@@ -43,14 +52,15 @@ router.post('/', async function (req, res, next) {
     // コミット
     await t.commit();
 
+    // レンダリング
+    res.render('makeRoomSuccess', { roomName: roomName });
+
     // エラーの場合の処理
   } catch (error) {
     await t.rollback();
     const errMessage = 'なんらかのエラーで部屋を作れませんでした...。';
-    res.render('makeRoomFailed', { errMessage: errMessage });
+    res.render('failed', { errMessage: errMessage });
   }
-  // 成功画面へ遷移
-  res.render('makeRoomSuccess', { roomName: roomName });
 });
 
 module.exports = router;

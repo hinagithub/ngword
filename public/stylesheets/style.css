@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP&display=swap');
 
 body {
-  padding: 50px;
+  padding: 35px;
   font-family: 'Kosugi Maru', sans-serif;
   font-family: 'Noto Sans JP', sans-serif;
   background: url(../images/bk3.jpg) center no-repeat;
@@ -53,10 +53,17 @@ li {
 .borderless th {
   border: none;
 }
+
+/* テーマ色のボタン */
 .btn-theme {
   background-color: #ff495b;
-  color: white;
+  color: #030303;
   text-decoration: none;
+}
+
+/* テーマ色の文字 */
+.text-theme {
+  color: #ff495b;
 }
 
 /* 部屋を作るボタン */
