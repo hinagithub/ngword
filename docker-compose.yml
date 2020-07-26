@@ -1,0 +1,12 @@
+version: '3'
+services:
+  ngword-db:
+    image: postgres:11-alpine
+    environment:
+      PORT: 5432
+      POSTGRES_USER: ngword
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: ng_word
+      TZ: 'Asia/Tokyo'
+    ports:
+      - 5432:5432

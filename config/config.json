@@ -1,6 +1,11 @@
 {
   "development": {
-    "use_env_variable": "DATABASE_URL"
+    "username": "ngword",
+    "password": "test",
+    "database": "ng_word",
+    "host": "0.0.0.0",
+    "dialect": "postgres",
+    "operatorsAliases": 0
   },
   "production": {
     "use_env_variable": "DATABASE_URL"
