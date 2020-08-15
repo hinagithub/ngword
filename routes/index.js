@@ -14,4 +14,6 @@ router.get('/all-rooms', (req, res) => {
   });
 });
 
+console.log('.env test:', test);
+
 module.exports = router;
