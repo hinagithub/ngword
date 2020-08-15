@@ -12,7 +12,7 @@ const NgwordRoom = require('../models').ngwords_rooms;
  * GET makeRoom
  *
  */ router.get('/', function (req, res, next) {
-  res.render('makeRoom', { title: 'Express' });
+  res.render('makeRoom', { title: '笑ってはいけない' });
 });
 
 /**
@@ -21,14 +21,25 @@ const NgwordRoom = require('../models').ngwords_rooms;
  *
  */
 router.post('/', async function (req, res, next) {
+  const renderInfo = await getMakeRoomInfo(req.body.player);
+
+  // レンダリング
+  if (renderInfo.errMessage === undefined) {
+    res.render('makeRoomSuccess', renderInfo);
+  } else {
+    res.render('failed', renderInfo);
+  }
+});
+
+async function getMakeRoomInfo(players) {
   // トランザクション開始
   const t = await sequelize.transaction();
   const roomName = Math.random().toString(32).substring(2);
   try {
-    // ランダムな部屋名を生成しDBに登録
+    // ランダムな部屋名を生成し登録
     const room = await Room.create({ name: roomName }, { transaction: t });
-    // プレイヤー名を取得し登録
-    const playerRegisterInfo = req.body.player.map((player) => {
+    // プレイヤー名を登録
+    const playerRegisterInfo = players.map((player) => {
       console.log(player);
       if (player !== '')
         return {
@@ -38,29 +49,28 @@ router.post('/', async function (req, res, next) {
     });
     await Player.bulkCreate(playerRegisterInfo, { transaction: t });
     // 全NGワードを取得
-    const playerCount = req.body.player.length;
+    const playerCount = players.length;
     const allNgwords = await Ngword.findAll({ transaction: t });
 
-    // シャッフルしてプレイヤー人数の分だけNGワードを生成&登録
+    // NGワードをシャッフル
     const ngwordsInfo = _.shuffle(allNgwords)
       .splice(0, playerCount)
       .map((word) => {
         return { room_id: room.id, ngword_id: word.id };
       });
+    // NGワードを登録
     await NgwordRoom.bulkCreate(ngwordsInfo, { transaction: t });
 
     // コミット
     await t.commit();
-
-    // レンダリング
-    res.render('makeRoomSuccess', { roomName: roomName });
+    return { roomName };
 
     // エラーの場合の処理
   } catch (error) {
     await t.rollback();
     const errMessage = 'なんらかのエラーで部屋を作れませんでした...。';
-    res.render('failed', { errMessage: errMessage });
+    return { errMessage: errMessage };
   }
-});
+}
 
 module.exports = router;

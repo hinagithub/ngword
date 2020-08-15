@@ -15,51 +15,58 @@ const Ngword = require('../models').ngwords;
  */
 router.get('/', async function (req, res, next) {
   const roomName = req.query.roomName;
-  console.log(roomName);
-  // トランザクション開始
-  const t = await sequelize.transaction();
-
   // roomNameがなければエラーを返す
   if (!roomName) {
     res.render('enterRoom', {
       errorMessage: '部屋が存在しません...URLをご確認ください',
     });
   }
+  const renderInfo = await getEnterRoomGetInfo(roomName);
+  console.log(renderInfo);
+  // レンダリング
+  if (renderInfo.errMessage === undefined) {
+    res.render('enterRoom', renderInfo);
+  } else {
+    res.render('failed', renderInfo);
+  }
+});
+
+async function getEnterRoomGetInfo(roomName) {
+  const t = await sequelize.transaction();
+
+  // トランザクション開始
   try {
-    // roomIdを取得   http://localhost:3000/enterRoom?roomName=6im25qpkvj8
+    // roomIdを取得 http://localhost:3000/enterRoom?roomName=6im25qpkvj8
     const room = await Room.findOne({
       where: {
         name: roomName,
       },
     });
-    console.log('OK roomName:', room.id);
     // プレイヤーを取得
     const playerNames = await Player.findAll({
       where: {
         room_id: room.id,
       },
     }).map((player) => player.name);
-    console.log('OK player.name:', playerNames);
 
     // コミット
     await t.commit();
 
     // レンダリング
-    const renderInfo = {
+    return {
       roomId: room.id,
       roomName,
       playerNames,
       errMessage: undefined,
     };
-    res.render('enterRoom', renderInfo);
 
     // エラーの場合の処理
   } catch (error) {
     await t.rollback();
     const errMessage = 'なんらかのエラーで部屋に入れませんでした...。';
-    res.render('failed', { errMessage: errMessage });
+    return { errMessage };
   }
-});
+}
 
 /**
  *
@@ -69,6 +76,23 @@ router.get('/', async function (req, res, next) {
 router.post('/', async function (req, res, next) {
   const roomId = req.body.roomId;
   const selectedPlayerName = req.body.selectedPlayerName;
+  // reqest情報がなければエラーを返す
+  if (!roomId || !selectedPlayerName) {
+    res.render('enterRoom', {
+      errorMessage: 'なんらかのエラーで部屋に入れませんでした...。',
+    });
+  }
+
+  const renderInfo = await getEnterRoomPostInfo(roomId, selectedPlayerName);
+  // レンダリング
+  if (renderInfo.errMessage === undefined) {
+    res.render('room', renderInfo);
+  } else {
+    res.render('failed', renderInfo);
+  }
+});
+
+async function getEnterRoomPostInfo(roomId, selectedPlayerName) {
   // トランザクション開始
   const t = await sequelize.transaction();
   try {
@@ -111,8 +135,7 @@ router.post('/', async function (req, res, next) {
     // コミット
     await t.commit();
 
-    // レンダリング
-    const renderInfo = {
+    return {
       roomId: roomId,
       roomName,
       selectedPlayerName,
@@ -120,15 +143,14 @@ router.post('/', async function (req, res, next) {
       ngwords,
       errMessage: undefined,
     };
-    res.render('room', renderInfo);
 
     // エラーの場合の処理
   } catch (error) {
     await t.rollback();
     const errMessage = 'なんらかのエラーで部屋に入れませんでした...。';
-    res.render('failed', { errMessage: errMessage });
+    return { errMessage: errMessage };
   }
-});
+}
 
 /**
  *
