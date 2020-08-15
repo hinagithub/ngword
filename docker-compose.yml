@@ -3,10 +3,10 @@ services:
   ngword-db:
     image: postgres:11-alpine
     environment:
-      PORT: 5432
-      POSTGRES_USER: ngword
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: ng_word
+      PORT: ${DB_PORT}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
       TZ: 'Asia/Tokyo'
     ports:
       - 5432:5432
