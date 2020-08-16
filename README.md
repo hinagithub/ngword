@@ -15,6 +15,20 @@
 プロジェクトのルートディレクトリで以下を順次実行してください。
 
 ### データベース
+
+`.env`ファイルの準備
+
+ルートディレクトリに `.env`ファイルを作成し、以下をコピペしてください。
+ユーザ名とパスワードは任意です。
+
+```
+DB_PORT=5432
+DB_USERNAME=ngword
+DB_PASSWORD=test
+DB_DATABASE=ng_word
+DB_HOST=0.0.0.0
+```
+
 PostgreSQL立ち上げ
 
 ```
