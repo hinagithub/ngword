@@ -157,8 +157,27 @@ async function getEnterRoomPostInfo(roomId, selectedPlayerName) {
  * GET shuffleNgwords
  *
  */
+
 router.get('/shuffleNgwords', async function (req, res, next) {
   const roomId = req.query.roomId;
+
+  // reqest情報がなければエラーを返す
+  if (!roomId) {
+    res.render('enterRoom', {
+      errorMessage: 'なんらかのエラーで部屋に入れませんでした...。',
+    });
+  }
+
+  const renderInfo = await getShuffleInfo(roomId);
+  // レンダリング
+  if (renderInfo.errMessage === undefined) {
+    res.render('enterRoom', renderInfo);
+  } else {
+    res.render('failed', renderInfo);
+  }
+});
+
+async function getShuffleInfo(roomId) {
   // トランザクション開始
   const t = await sequelize.transaction();
 
@@ -227,7 +246,7 @@ router.get('/shuffleNgwords', async function (req, res, next) {
     await t.commit();
 
     // レンダリング
-    const renderInfo = {
+    return {
       roomId: room.id,
       roomName,
       playerNames,
@@ -239,8 +258,8 @@ router.get('/shuffleNgwords', async function (req, res, next) {
   } catch (error) {
     await t.rollback();
     const errMessage = 'なんらかのエラーでシャッフルできませんでした...。';
-    res.render('failed', { errMessage: errMessage });
+    return { errMessage: errMessage };
   }
-});
+}
 
 module.exports = router;
