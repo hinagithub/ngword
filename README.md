@@ -38,13 +38,13 @@ docker-compose up -d
 #### テーブル作成
 
 ```
-npx sequelize-cli db:migrate
+node_modules/.bin/sequelize db:migrate
 ```
 
 #### seedを用意
 
 ```
-npx sequelize-cli db:seed:all
+node_modules/.bin/sequelize db:seed:all
 ```
 
 ### プロジェクト実行
