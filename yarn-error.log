@@ -1,0 +1,59 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js run
+
+PATH: 
+  /Users/hinako/.nodebrew/current/bin:/Users/hinako/.rbenv/shims:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Applications/Wireshark.app/Contents/MacOS
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/hinako/node/lesson/ng-word/package.json: Unexpected token 
+   in JSON at position 233
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "ng-word",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "seq-migrate": "node_modules/.bin/sequelizec db:migrate",
+      "seq-seed-all": "node_modules/.bin/sequelizec db:seed:all
+    },
+    "dependencies": {
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "dotenv": "^8.2.0",
+      "ejs": "~2.6.1",
+      "express": "~4.16.1",
+      "express-session": "^1.17.1",
+      "http-errors": "~1.6.3",
+      "lodash": "^4.17.15",
+      "morgan": "~1.9.1",
+      "pg": "^8.2.1",
+      "sequelize": "^5.21.13",
+      "sequelize-cli": "^5.5.1"
+    },
+    "engines": {
+      "node": "12.16.0",
+      "npm": "6.13.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
