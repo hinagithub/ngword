@@ -15,22 +15,36 @@
 プロジェクトのルートディレクトリで以下を順次実行してください。
 
 ### データベース
-PostgreSQL立ち上げ
+
+#### `.env`ファイルの準備
+
+ルートディレクトリに `.env`ファイルを作成し、以下をコピペしてください。
+ユーザ名とパスワードは任意です。
+
+```
+DB_PORT=5432
+DB_USERNAME=ngword
+DB_PASSWORD=test
+DB_DATABASE=ng_word
+DB_HOST=0.0.0.0
+```
+
+#### PostgreSQL立ち上げ
 
 ```
 docker-compose up -d
 ```
 
-テーブル作成
+#### テーブル作成
 
 ```
-npx sequelize-cli db:migrate
+node_modules/.bin/sequelize db:migrate
 ```
 
-seedを用意
+#### seedを用意
 
 ```
-npx sequelize-cli db:seed:all
+node_modules/.bin/sequelize db:seed:all
 ```
 
 ### プロジェクト実行
