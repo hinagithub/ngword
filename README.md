@@ -15,8 +15,17 @@
 - yarn 1.22.4
 - Docker 19.03.12
 
-## 環境設定
-プロジェクトのルートディレクトリで以下を順次実行してください。
+## ローカル環境設定
+
+git cloneする
+```
+git clone https://github.com/hinahinako/ngword
+```
+
+プロジェクトのルートディレクトリに移動
+```
+cd ngword
+```
 
 パッケージのインストール
 ```
@@ -35,8 +44,6 @@ touch .env
 
 以下をコピペしてください。
 ユーザ名とパスワードは任意です。
-
-
 
 ```
 DB_PORT=5432
@@ -70,6 +77,12 @@ yarn run seq-seed-all
 
 ```
 yarn start
+```
+
+ブラウザで動いていることを確認
+
+```
+http://localhost:3000/
 ```
 
 ## ゲームのルール
