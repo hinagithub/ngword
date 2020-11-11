@@ -1,11 +1,10 @@
 # 言ってはいけないゲーム
+![image](https://user-images.githubusercontent.com/44778704/98825055-650d2300-2477-11eb-9529-cf0d286b0089.png)
 
 ## 概要
 オンライン飲み会で遊ぶことを想定したブラウザゲームです。</br>
 2〜8名で会話をする中で、自分に割り当てられた「禁止ワード」を最後まで言わなかった人が勝ちになります。
 
-## ゲームのルール
-![image](https://user-images.githubusercontent.com/44778704/90329319-cd667880-dfde-11ea-83a8-09ee434521e0.png)
 
 ## 動作環境
 
@@ -70,5 +69,9 @@ yarn run seq-seed-all
 ```
 yarn start
 ```
+
+## ゲームのルール
+![image](https://user-images.githubusercontent.com/44778704/90329319-cd667880-dfde-11ea-83a8-09ee434521e0.png)
+
 
 以上
