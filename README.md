@@ -10,10 +10,11 @@
 
 ## 動作環境
 
-- node v12.16.0
-- npm 6.13.4
-- yarn 1.22.4
+- node 14.0.13
+- express 4.16.4
 - Docker 19.03.12
+- sequelize 5.21.13
+- pg(PostgreSQL) 8.2.1
 
 ## ローカル環境設定
 
