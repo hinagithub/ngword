@@ -1,4 +1,6 @@
 const Ngword = require('../models').ngwords;
+// TODO: シャッフルなどの共通処理はここに書くべき。
+
 /*
 
 common.js
