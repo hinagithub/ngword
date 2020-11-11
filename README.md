@@ -4,6 +4,9 @@
 オンライン飲み会で遊ぶことを想定したブラウザゲームです。</br>
 2〜8名で会話をする中で、自分に割り当てられた「禁止ワード」を最後まで言わなかった人が勝ちになります。
 
+## ゲームのルール
+![image](https://user-images.githubusercontent.com/44778704/90329319-cd667880-dfde-11ea-83a8-09ee434521e0.png)
+
 ## 動作環境
 
 - node v12.16.0
@@ -67,8 +70,5 @@ yarn run seq-seed-all
 ```
 yarn start
 ```
-
-## ゲームの概要
-![image](https://user-images.githubusercontent.com/44778704/90329319-cd667880-dfde-11ea-83a8-09ee434521e0.png)
 
 以上
