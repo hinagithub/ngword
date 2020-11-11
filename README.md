@@ -91,7 +91,6 @@ http://localhost:3000/
 ## 遊び方
 
 1. 部屋を作成
-
 代表者が部屋を作成します。
 トップページの「部屋を作る」ボタンを押して、一緒に遊ぶ人(2〜8名)全員の名前を入力してください。
 ![image](https://user-images.githubusercontent.com/44778704/98836819-7d843a00-2485-11eb-8b41-f27c85e2ca3d.png)
