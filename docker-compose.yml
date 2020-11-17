@@ -10,3 +10,11 @@ services:
       TZ: 'Asia/Tokyo'
     ports:
       - 5432:5432
+
+  mongo-taboo-code-db:
+    image: mongo:4.4.1
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
